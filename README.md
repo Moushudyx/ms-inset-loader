@@ -3,6 +3,8 @@
 
 编译阶段在 sfc 模板指定位置插入自定义内容，适用于 webpack 构建的 vue 应用，常用于小程序需要全局引入组件的场景。（由于小程序没有开放根标签，没有办法在根标签下追加全局标签，所以要使用组件必须在当前页面引入组件标签）
 
+常见的使用场景有：在每个页面上添加一个`<my-loading>`实现自定义加载中动画，给每个页面添加一个固定悬浮组件（用于回到顶部、联系客服等）
+
 ## 一、安装
 
 ```bash
@@ -54,7 +56,7 @@ npm install ms-inset-loader --save-dev
                 "navigationBarTitleText": "页面标题",
                 // 单独配置，用法跟全局配置一致，优先级高于全局
                 "label": ["loading", "popup"],
-                "rootEle":"div"
+                "rootEle": "div"
             }
         },
     ]
@@ -79,5 +81,7 @@ Vue.component('my-popup', MyPopup);
 ```
 
 ## 其他
+
+基于[vue-inset-loader](https://github.com/1977474741/vue-inset-loader)开发，做出了一些简单的调整，如修复了`script`没有内容时会出错的问题、支持带`lang`的`script`标签、默认标签类型从`div`改为了`view`等
 
 - [《引用超级全局组件方案》原作者的文章，其下评论中提到如何兼容 app 端](https://ask.dcloud.net.cn/article/id-39345__page-4#reply)
